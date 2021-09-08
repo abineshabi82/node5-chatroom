@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ChatRoom</title>
+    <title>Chat Room</title>
     <link rel="icon" href="/img/chat.png" />
     <link rel="stylesheet" href="/css/global.css">
 </head>
@@ -23,7 +23,9 @@
                 <input type="text" name="message" required autocomplete="off" />
                 <button name="send" type="submit">send</button>
             </form>
-            <button id="location">share location</button>
+            <div class="location">
+                <button id="location">share location</button>
+            </div>
         </div>
     </div>
 
@@ -31,6 +33,19 @@
         <div>
             <div><b>{{name}}</b></div>
         <p>{{message}} <sub>{{createdAt}} </sub></p>    
+        </div>
+    </script>
+    
+    <script id="my-message-template" type="text/html">
+        <div class="my-message">
+            <div><b>{{name}}</b></div>
+        <p>{{message}} <sub>{{createdAt}} </sub></p>    
+        </div>
+    </script>
+    
+    <script id="room-info-template" type="text/html">
+        <div class="room-info">
+            <p>{{message}} <sub>{{createdAt}} </sub></p>    
         </div>
     </script>
 
@@ -44,11 +59,21 @@
                 <li>{{name}}</li>
                 {{/users}}
             </ul>
+            <button onClick="clearRoom()">Logout</button>
         </div>
     </script>
 
     <script id="link-template" type="text/html">
         <div>
+            <div><b>{{name}}</b></div>
+            <p>
+                <a target="blank" href={{link}}> link</a> to my current location  <sub>{{createdAt}} </sub>  
+            </p>
+        </div>
+    </script>
+    
+    <script id="my-link-template" type="text/html">
+        <div class="my-message">
             <div><b>{{name}}</b></div>
             <p>
                 <a target="blank" href={{link}}> link</a> to my current location  <sub>{{createdAt}} </sub>  
@@ -61,6 +86,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.6.0/qs.min.js"></script>
     <script src="/socket.io/socket.io.js"></script>
+    <script src="/js/message.js"></script>
     <script src="/js/chat.js"></script>
 </body>
 

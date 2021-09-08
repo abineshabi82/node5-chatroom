@@ -7,10 +7,13 @@
 html {
     height: 100vh;
     background-color: aquamarine;
+    overflow: hidden;
 }
 body {
     height: inherit;
     font-family: monospace, serif, Arial, Helvetica, sans-serif;
+    position: relative;
+    overflow: hidden;
 }
 .main {
     display: flex;
@@ -29,7 +32,7 @@ body {
     display: flex;
     flex-direction: column;
     gap: 0.6rem;
-    height: calc(95% - 1rem);
+    height: calc(94% - 1rem);
     margin: 0.5rem;
     border: 1px solid;
     padding: 0.5rem;
@@ -40,29 +43,43 @@ body {
     display: inline-block;
     width: fit-content;
     padding: 0.5rem;
-    border-radius: 17px 8px 17px 0px;
+    border-radius: 15px 15px 15px 0px;
     box-shadow: 1px -1px 3px 0px;
 }
 .message-form {
-    height: 5%;
-    width: 90%;
+    height: 6%;
+    width: 68vw;
     display: inline-block;
     padding-bottom: 0.5rem;
+    margin-left: 1rem;
+    display: inline-flex;
+    justify-content: space-around;
 }
 .message-form [name="message"] {
     height: 100%;
-    width: 89%;
+    width: 85%;
     border-radius: 4px;
 }
 .message-form [name="send"] {
     height: 100%;
     width: 10%;
+    white-space: nowrap;
     border-radius: 4px;
+    min-width: 37px;
+}
+.chat-area .location {
+    display: inline-block;
+    width: 10%;
+    height: 6%;
+    padding-bottom: 0.5rem;
+    min-width: fit-content;
 }
 .chat-area #location {
-    width: 9%;
-    height: calc(5% - 0.5rem);
+    width: 100%;
+    min-width: fit-content;
+    height: 100%;
     border-radius: 4px;
+    white-space: nowrap;
 }
 
 .center {
@@ -102,18 +119,94 @@ body {
     flex-direction: column;
     gap: 0.8rem;
 }
-.sidebar-section>*{
-    margin: .1rem 1rem;
+.sidebar-section button{
+    padding: .3rem;
+    border-radius: 4px;
+}
+.sidebar-section > * {
+    margin: 0.1rem 1rem;
     border-bottom: 2px solid;
 }
-.sidebar-section>h1{
+.sidebar-section > h1 {
     box-shadow: 0px 1px 4px -1px;
-    padding: .3rem;
+    padding: 0.3rem;
     text-align: center;
     border: none;
     margin: 1rem;
     border-radius: 4px;
+    min-width: fit-content;
 }
-p{
+p {
     overflow-wrap: anywhere;
 }
+sub {
+    font-size: 0.75rem;
+}
+.messages > .room-info {
+    width: 100%;
+    box-shadow: none;
+    text-align: center;
+    padding: 0;
+}
+
+.messages > .my-message {
+    align-self: flex-end;
+    border-radius: 15px 15px 0px 15px;
+    background: #c9ffed;
+}
+
+@media (max-width: 950px) {
+    .chat-area {
+        width: 100%;
+        padding-top: 4rem;
+    }
+    .sidebar {
+        position: absolute;
+        background: aliceblue;
+        transition: transform 1s;
+        transform: translateX(100%);
+        right: 0;
+        width: fit-content;
+        padding-top: 4rem;
+        box-shadow: 1px 1px 5px 0px;
+    }
+    .sidebar-section > h1 {
+        cursor: pointer;
+        /* position: relative; */
+        transition: transform 1s;
+        /* transform: translateX(-135%); */
+        position: fixed;
+        left: -100vw;
+        transform: translateX(0);
+        margin-top: -3rem;
+    }
+    .message-form {
+        width: calc(100vw - 130px);
+    }
+}
+@media (max-width: 435px) {
+    .message-form [name="message"] {
+        width: calc(85% - 30px);
+    }
+}
+/* @media (max-width: 920px) {
+    .message-form {
+        width: calc(100vw - 130px);
+    }
+} */
+/* @media (max-width: 520px) {
+    .message-form {
+        width: 50vw;
+    }
+    .message-form [name="message"] {
+        width: 80%;
+    }
+    .message-form [name="send"] {
+        width: 13%;
+    }
+}
+@media (max-width: 470px) {
+    .message-form [name="message"] {
+        width: 70%;
+    }
+} */

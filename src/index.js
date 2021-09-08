@@ -21,6 +21,7 @@ io.on('connection',(socket)=>{
  
         if(user.error)
         return callback(user.error)
+        callback()
 
         socket.join(room)
 
